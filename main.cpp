@@ -1,7 +1,5 @@
 #include <iostream>
 #include <fstream>
-// #include <time.h>
-// #include <ctime>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
@@ -18,12 +16,13 @@ int main(int argc, char *argv[]){
 		file.open(argv[1]);
 		if (!file) {
 		    cerr << "Unable to open file.";
-		    exit(1);   // call system to stop
+		    exit(1);
 		}else{
 		    string str;
 		    bool first = true;
 		    int n;
 		    while (getline(file, str)){
+		    	//Save number of objects then run dyn() on those objects
 		    	if(first){
 		    		n = stoi(str);
 		    		first = false;
@@ -41,6 +40,8 @@ int main(int argc, char *argv[]){
 		    		robot.n = temp[1];
 		    		robot.k = temp[2];
 		    		robot.printValues();
+		    		robot.dyn();
+		    		cout << endl;
 		    	}
 		    }
 			file.close();
