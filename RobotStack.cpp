@@ -4,46 +4,40 @@ class RobotStack{
 		int b;
 		int n;
 		int k;
-    	int C[100][100];
+    	int arr[100][100];
     	RobotStack(){
 			for(int i = 0; i < n; i++)
 		        for (int j = 0; j < b; j++)
-		        	C[n][b] = 0;
+		        	arr[n][b] = -1;
     	}
 		void printValues(){
 			cout << "b: " << b << " n: " << n << " k: " << k << endl;
 			cout << "Result: ";
 		}
-		int dyn(){
-	    	//Memoized functionality
-	    	if(C[n][b] > 0){
-	    		// print(C[n][b]);
-	    		return C[n][b];
-	    	}
-	    	//Binomial Coefficient
-		    for (int i = 0; i <= n; i++){
-		        for (int j = 0; j <= min(i, b); j++){
-	            	//Base Case
-		            if (j == 0 || j == i || j+i-1==k)
-		                C[i][j] = 1;
-		            // else if(j == k)
-		            // 	C[i+j-1][j] = C[i+j-1][j-1] + C[i+j-1][j];
-		            else
-		                C[i][j] = C[i-1][j-1] + C[i-1][j];
-		        }
-		    }
-		    print(C[n][b]);
-		    return C[n][b];
+
+		int choose(int n, int b) {
+		    if(b == 0) {
+				return 1;
+			}
+		    return (n * choose(n - 1, b - 1)) / b;
 		}
-		bool check(int temp){
-			return true;
-		}
-		int min(int a, int b){
-			if(a < b)
-				return a;
-			return b;
-		}
-		void print(int i){
-			cout << i;
+
+		int dyn(int n, int b, int k) {
+			int total = 0;
+			if(n == 0) {
+				return total + 1;
+			}else {
+				for(int i = b; i >= 0; i -= k) {
+					for(int j = 0; j <= k; j++) {
+						if(j == i) {
+							total += choose(n + i - 1, i);
+						}
+						else if(j == 1) {
+							total += choose(n, i);
+						}
+					}
+				}
+				return dyn(n - 1, b, k) + total;
+			}
 		}
 };
