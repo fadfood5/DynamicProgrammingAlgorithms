@@ -1,9 +1,9 @@
 using namespace std;
 class RobotStack{
 	public:
-		char b;
-		char n;
-		char k;
+		int b;
+		int n;
+		int k;
     	int C[100][100];
     	RobotStack(){
 			for(int i = 0; i < n; i++)
@@ -12,6 +12,7 @@ class RobotStack{
     	}
 		void printValues(){
 			cout << "b: " << b << " n: " << n << " k: " << k << endl;
+			cout << "Result: ";
 		}
 		int dyn(){
 	    	//Memoized functionality
