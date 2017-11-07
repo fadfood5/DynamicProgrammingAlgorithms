@@ -18,34 +18,18 @@ int main(int argc, char *argv[]){
 		    cerr << "Unable to open file.";
 		    exit(1);
 		}else{
-		    string str;
-		    bool first = true;
 		    int n;
-		    while (getline(file, str)){
-		    	//Save number of objects then run dyn() on those objects
-		    	if(first){
-		    		n = stoi(str);
-		    		first = false;
-		    	}else{
-		    		char temp[3];
-		    		int index = 0;
-		    		for(int i=0; i<str.length(); i++){
-		    			if(str[i] != ',' && str[i] != ' '){
-		    				temp[index] = str[i];
-		    				index++;
-		    			}
-		    		}
-		    		RobotStack robot;
-		    		robot.b = temp[0];
-		    		robot.n = temp[1];
-		    		robot.k = temp[2];
-		    		robot.printValues();
-		    		robot.dyn();
-		    		cout << endl;
-		    	}
+		    file >> n;
+		    cout << "There are " << n << " instances." << endl;
+    		RobotStack robot;
+		    while (file >> robot.b >> robot.n >> robot.k){
+	    		robot.printValues();
+	    		robot.dyn();
+    			cout << endl;
 		    }
-			file.close();
 		}
+		file.close();
+		cout << "Done." << endl;
 	}
 	return 0;
 }

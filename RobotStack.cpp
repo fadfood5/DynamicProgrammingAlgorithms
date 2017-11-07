@@ -16,7 +16,7 @@ class RobotStack{
 		int dyn(){
 	    	//Memoized functionality
 	    	if(C[n][b] > 0){
-	    		print(C[n][b]);
+	    		// print(C[n][b]);
 	    		return C[n][b];
 	    	}
 	    	//Binomial Coefficient
